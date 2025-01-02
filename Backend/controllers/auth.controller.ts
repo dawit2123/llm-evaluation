@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 import { User } from "../models/user.model";
 
 // Register User
-export const registerUser = async (req: any, res: Response) => {
+export const registerUser = async (req: any, res: any) => {
   const { username, email, password } = req.body;
 
   try {
@@ -23,7 +23,7 @@ export const registerUser = async (req: any, res: Response) => {
 };
 
 // Login User
-export const loginUser = async (req: any, res: Response) => {
+export const loginUser = async (req: any, res: any) => {
   const { email, password } = req.body;
 
   try {
@@ -56,7 +56,7 @@ export const loginUser = async (req: any, res: Response) => {
 };
 
 // Get User Profile (Protected Route)
-export const getUserProfile = async (req: any, res: Response) => {
+export const getUserProfile = async (req: any, res: any) => {
   try {
     const user = await User.findById(req.user.id).select("-password");
     if (!user) return res.status(404).json({ error: "User not found" });
