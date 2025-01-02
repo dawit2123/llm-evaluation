@@ -14,6 +14,9 @@ const PORT = process.env.PORT || 5000;
 app.use(express.json());
 
 // Routes
+app.get("/", (req: any, res: any) =>
+  res.send("Welcome to the LLM Evaluation API")
+);
 app.use("/api/auth", authRoutes);
 
 // Connect to MongoDB and start the server
