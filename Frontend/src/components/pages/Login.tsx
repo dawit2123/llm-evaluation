@@ -16,6 +16,11 @@ const Login: React.FC = () => {
     setError(""); // Clear previous errors
 
     try {
+      console.log(
+        "vite login url",
+        import.meta.env,
+        import.meta.env.VITE_LOGIN_URL
+      );
       const response = await fetch(import.meta.env.VITE_LOGIN_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
