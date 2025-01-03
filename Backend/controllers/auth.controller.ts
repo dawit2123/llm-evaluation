@@ -15,7 +15,18 @@ export const registerUser = async (req: any, res: any) => {
     const newUser = new User({ username, email, password: hashedPassword });
     await newUser.save();
 
-    res.status(201).json({ message: "User registered successfully" });
+    // Generate token
+    const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET!, {
+      expiresIn: "10h",
+    });
+    res.status(201).json({
+      token,
+      user: {
+        email: newUser.email,
+        id: newUser._id,
+      },
+      message: "User registered successfully",
+    });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Error registering user" });
@@ -44,7 +55,6 @@ export const loginUser = async (req: any, res: any) => {
       token,
       user: {
         id: user._id,
-        username: user.username,
         email: user.email,
       },
     });
