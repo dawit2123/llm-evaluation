@@ -1,26 +1,27 @@
-import React, { createContext, useState, ReactNode, useContext } from "react";
+import React, { createContext, useState } from "react";
 
-// Define the shape of the context
-interface MyContextType {
-  user: string | null;
-  setUser: (newUser: string | null) => void;
+interface UserContextType {
+  email: string;
+  isValidated: boolean;
 }
 
-// Create the context
-const MyContext = createContext<MyContextType | undefined>(undefined);
+interface MyContextType {
+  user: UserContextType;
+  setUser: React.Dispatch<React.SetStateAction<UserContextType>>;
+}
 
-// Export a custom hook to access the context
-export const useMyContext = () => {
-  const context = useContext(MyContext);
-  if (!context) {
-    throw new Error("useMyContext must be used within a MyProvider");
-  }
-  return context;
-};
+export const MyContext = createContext<MyContextType>({
+  user: { email: "", isValidated: false },
+  setUser: () => {},
+});
 
-// Create the provider component
-export const MyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [user, setUser] = useState<string | null>(null);
+export const MyProvider: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
+  const [user, setUser] = useState<UserContextType>({
+    email: "",
+    isValidated: false,
+  });
 
   return (
     <MyContext.Provider value={{ user, setUser }}>
