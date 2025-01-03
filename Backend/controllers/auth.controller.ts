@@ -54,6 +54,14 @@ export const loginUser = async (req: any, res: any) => {
   }
 };
 
+// logout a user
+export const logoutUser = (req: Request, res: Response) => {
+  res.clearCookie("token").status(200).json({
+    success: true,
+    message: "Logged out successfully!",
+  });
+};
+
 // Get User Profile (Protected Route)
 export const getUserProfile = async (req: any, res: any) => {
   try {

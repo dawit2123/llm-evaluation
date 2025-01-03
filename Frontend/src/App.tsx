@@ -6,6 +6,7 @@ import Home from "./components/pages/Home";
 import Login from "./components/pages/Login";
 import Signup from "./components/pages/Signup";
 import Metrics from "./components/pages/Metrics";
+import Analytics from "./components/pages/analytics";
 
 const App: React.FC = () => {
   return (
@@ -18,6 +19,7 @@ const App: React.FC = () => {
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/metrics" element={<Metrics />} />
+            <Route path="/analytics" element={<Analytics />} />
           </Routes>
         </div>
         <Footer />
