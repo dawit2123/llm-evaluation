@@ -40,13 +40,10 @@ const Analytics = () => {
           headers["Authorization"] = `Bearer ${token}`;
         }
 
-        const response = await fetch(
-          "http://localhost:5000/api/prompt/analytics",
-          {
-            method: "GET",
-            headers: headers,
-          }
-        );
+        const response = await fetch(import.meta.env.VITE_ANALYTICS_URL, {
+          method: "GET",
+          headers: headers,
+        });
 
         const result = await response.json();
         if (result.status === "success") {

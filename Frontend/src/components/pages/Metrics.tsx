@@ -67,7 +67,7 @@ const Metrics: React.FC = () => {
         headers["Authorization"] = `Bearer ${token}`; // Attach the Bearer token
       }
 
-      const response = await fetch("http://localhost:5000/api/prompt", {
+      const response = await fetch(import.meta.env.VITE_PROMPT_URL, {
         method: "POST",
         headers: headers,
         body: JSON.stringify(requestBody),

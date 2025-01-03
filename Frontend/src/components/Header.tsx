@@ -9,7 +9,7 @@ const Header: React.FC = () => {
   const handleLogout = async () => {
     try {
       // Send a GET request to the logout endpoint using fetch
-      const response = await fetch("http://localhost:5000/api/auth/logout", {
+      const response = await fetch(import.meta.env.VITE_LOGOUT_URL, {
         method: "GET",
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`, // Pass the token
