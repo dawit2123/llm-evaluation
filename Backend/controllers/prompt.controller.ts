@@ -180,16 +180,24 @@ export const submitPrompt = async (req: any, res: any) => {
   }
 };
 
-export const reportAnalysis = async (req: any, res: any) => {};
+export const reportAnalysis = async (req: any, res: any) => {
+  try {
+    const data: any = await Prompt.find(
+      { user_id: req.user.id },
+      "geminiResponse mixtralResponse llamaResponse updatedAt"
+    );
+    return res.status(200).json({ status: "success", data });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: "Server error" });
+  }
+};
 
 const generateObj = (
   reponseText: string,
   analyseResponse: string,
   timeTaken: number
 ) => {
-  const str = "[1,2,3]"; // String representation of an array
-
-  // Step 1: Parse the string to get an array
   analyseResponse = JSON.parse(analyseResponse);
   let obj = {
     response: reponseText,

@@ -39,6 +39,12 @@ const Header: React.FC = () => {
           {user.isValidated ? (
             <>
               <Link
+                to="/metrics"
+                className="text-lg bg-white text-indigo-600 px-4 py-2 rounded-md shadow hover:bg-gray-100"
+              >
+                Metrics
+              </Link>
+              <Link
                 to="/analytics"
                 className="text-lg bg-white text-indigo-600 px-4 py-2 rounded-md shadow hover:bg-gray-100"
               >
