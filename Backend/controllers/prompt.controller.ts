@@ -180,6 +180,8 @@ export const submitPrompt = async (req: any, res: any) => {
   }
 };
 
+export const reportAnalysis = async (req: any, res: any) => {};
+
 const generateObj = (
   reponseText: string,
   analyseResponse: string,
