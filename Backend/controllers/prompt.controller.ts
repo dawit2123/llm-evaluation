@@ -185,12 +185,16 @@ const generateObj = (
   analyseResponse: string,
   timeTaken: number
 ) => {
+  const str = "[1,2,3]"; // String representation of an array
+
+  // Step 1: Parse the string to get an array
+  analyseResponse = JSON.parse(analyseResponse);
   let obj = {
     response: reponseText,
-    accurracy: analyseResponse.split(",")[0],
-    relevancy: analyseResponse.split(",")[1],
-    coherence: analyseResponse.split(",")[2],
-    completion: analyseResponse.split(",")[3],
+    accuracy: analyseResponse[0],
+    relevancy: analyseResponse[1],
+    coherence: analyseResponse[2],
+    completion: analyseResponse[3],
     timeTaken: timeTaken,
   };
   return obj;

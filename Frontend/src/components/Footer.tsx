@@ -2,7 +2,7 @@ import React from "react";
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-gray-800 text-gray-300 py-6">
+    <footer className="bg-gray-800 text-gray-300 py-3">
       <div className="container mx-auto text-center">
         <p>
           &copy; 2025 AI Metrics Dashboard. All rights reserved. Developed by
