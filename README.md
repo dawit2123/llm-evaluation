@@ -4,8 +4,6 @@
 
 Welcome to the **AI Metrics Dashboard**! This cutting-edge full-stack project is designed to provide a seamless and interactive platform for visualizing performance metrics of multiple AI models. By comparing metrics like response times and accuracy, this dashboard empowers users to make data-driven decisions for optimizing model selection and deployment.
 
-👉 Check out the live application here: [AI Metrics Dashboard](#)
-
 ---
 
 ## 💡 Skills Gained
@@ -43,8 +41,16 @@ The **AI Metrics Dashboard** features a simple yet powerful workflow:
 2. **Data Processing**: The backend processes the raw data, converting milliseconds to seconds and organizing it into structured datasets.
 3. **Visualization**: The frontend dynamically renders interactive charts using Chart.js to display metrics such as response time and accuracy.
 
-![Demo](#)  
-![Dashboard Overview](#)
+### Home Page
+![Home](https://github.com/dawit2123/llm-evaluation/blob/main/Demos/home.png)  
+
+### Metrics Page
+![Metrics Page](https://github.com/dawit2123/llm-evaluation/blob/main/Demos/prompt1.png)
+![Metrics Page](https://github.com/dawit2123/llm-evaluation/blob/main/Demos/prompt2.png)
+
+# Analytics Page
+![Analytics Page](https://github.com/dawit2123/llm-evaluation/blob/main/Demos/analytics.png)
+![Analytics Page](https://github.com/dawit2123/llm-evaluation/blob/main/Demos/analytics2.png)
 
 ---
 
