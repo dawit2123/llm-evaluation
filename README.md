@@ -1,7 +1,5 @@
 # 📊 AI Metrics Dashboard
 
-<img src="https://img.shields.io/badge/-Team Project-0078D7?&style=for-the-badge&logo=teams&logoColor=white" />
-
 ## 🌟 Project Vision
 
 Welcome to the **AI Metrics Dashboard**! This cutting-edge full-stack project is designed to provide a seamless and interactive platform for visualizing performance metrics of multiple AI models. By comparing metrics like response times and accuracy, this dashboard empowers users to make data-driven decisions for optimizing model selection and deployment.
