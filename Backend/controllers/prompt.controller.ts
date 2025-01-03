@@ -2,6 +2,7 @@
 import axios from "axios";
 
 import { Prompt } from "../models/prompt.model";
+import { response } from "express";
 
 const sendGeminiAPIRequest = async (prompt: string): Promise<any> => {
   try {
@@ -132,30 +133,65 @@ export const submitPrompt = async (req: any, res: any) => {
   const { prompt } = req.body;
 
   try {
+    let startTime = Date.now();
+    let geminiResponse = await sendGeminiAPIRequest(prompt);
+    let duration = Date.now() - startTime;
+    let geminiAnalysedResult = await analyseResponse(prompt, geminiResponse);
+    let geminiObj = generateObj(geminiResponse, geminiAnalysedResult, duration);
+
+    startTime = Date.now();
     let llamaResponse = await sendGroqLlamaRequest(
       prompt,
       "llama-3.1-70b-versatile"
     );
-    console.log(
-      "Groq Analysed Result",
-      await analyseResponse(prompt, llamaResponse)
-    );
+    duration = Date.now() - startTime;
 
+    let llamaAnalysedResult = await analyseResponse(prompt, llamaResponse);
+    let llamaObj = generateObj(llamaResponse, llamaAnalysedResult, duration);
+
+    startTime = Date.now();
     let mixtralResponse = await sendGroqLlamaRequest(
       prompt,
       "mixtral-8x7b-32768"
     );
-    console.log(
-      "Mixtral Analysed Result",
-      await analyseResponse(prompt, mixtralResponse)
+    duration = Date.now() - startTime;
+    let mixtralAnalysedResult = await analyseResponse(prompt, mixtralResponse);
+    let mixtralObj = generateObj(
+      mixtralResponse,
+      mixtralAnalysedResult,
+      duration
     );
-    //const newPrompt = new Prompt({ user_id, prompt, response });
-    //await newPrompt.save();
+    let dataObj = {
+      user_id,
+      prompt,
+      geminiResponse: geminiObj,
+      llamaResponse: llamaObj,
+      mixtralResponse: mixtralObj,
+    };
+    const newPrompt = new Prompt(dataObj);
+    await newPrompt.save();
 
-    //   res.status(201)
-    //   .json({ message: "Prompt submitted successfully", prompt: newPrompt });
+    res
+      .status(201)
+      .json({ message: "Prompt submitted successfully", data: dataObj });
   } catch (error) {
     console.error("Error saving prompt:", error);
     res.status(500).json({ error: "Error saving prompt" });
   }
+};
+
+const generateObj = (
+  reponseText: string,
+  analyseResponse: string,
+  timeTaken: number
+) => {
+  let obj = {
+    response: reponseText,
+    accurracy: analyseResponse.split(",")[0],
+    relevancy: analyseResponse.split(",")[1],
+    coherence: analyseResponse.split(",")[2],
+    completion: analyseResponse.split(",")[3],
+    timeTaken: timeTaken,
+  };
+  return obj;
 };
