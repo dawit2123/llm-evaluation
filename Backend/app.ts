@@ -2,6 +2,7 @@ import express, { Application } from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import { authRoutes } from "./routes/auth.routes";
+import promptRoutes from "./routes/prompt.routes";
 
 // Load environment variables
 dotenv.config();
@@ -17,6 +18,7 @@ app.use(express.json());
 app.get("/", (req: any, res: any) =>
   res.send("Welcome to the LLM Evaluation API")
 );
+app.use("/api/prompt", promptRoutes);
 app.use("/api/auth", authRoutes);
 
 // Connect to MongoDB and start the server

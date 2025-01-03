@@ -2,5 +2,5 @@
   "watch": ["./"],
   "ext": "ts",
   "ignore": ["./**/*.spec.ts"],
-  "exec": "ts-node ./dist/app.js"
+  "exec": "ts-node ./app.ts"
 }
